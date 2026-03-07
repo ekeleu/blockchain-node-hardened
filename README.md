@@ -1,10 +1,27 @@
-# Dual-Stack Node Infrastructure: Bitcoin & Algorand
-## Resource Orchestration & Optimization
+# ETH-Sentinel-2026: High-Performance Node Deployment
 
-In a dual-stack environment (BTC + ALGO) on a single NVMe, CPU and I/O contention are inevitable during Initial Block Download (IBD) and Catchpoint Verification. 
+## Hardware Profile
+* **Compute:** 8-Core CPU / 32GB DDR4 RAM
+* **Storage:** 2TB NVMe (Dedicated Warehouse)
+* **Status:** Active Mainnet Sync (March 2026)
 
-### The Engineering Solution
-1. **Dynamic Prioritization:** Implemented `systemd` resource controls.
-2. **CPU Management:** Set Bitcoin to `Nice=15` (lower priority) to ensure the Algorand `algod` process has sufficient cycles for hashing and verification.
-3. **I/O Scheduling:** Utilized `ionice` (Class 2, Priority 7) for Bitcoin, ensuring Algorand's database commits take precedence on the NVMe bus.
-# blockchain-node-hardened
+## Architecture
+This repository documents a hardened, decoupled Ethereum stack:
+* **Consensus:** Lighthouse (Optimized for 200+ Peers)
+* **Execution:** Geth (Snap Sync Mode)
+* **Security:** JWT-authenticated Engine API, isolated NVMe data paths.
+
+## Performance Tuning
+* **Memory Management:** Transitioning from 2GB sync-cache to 16GB operational-cache post-sync.
+* **Storage Optimization:** Leveraging NVMe IOPS to handle the 280M+ account state trie.
+* **Observability:** Custom integrated monitoring for both CL and EL layers.
+
+#### State Healing Logs (Verified 00:40 GMT)
+- **Account State:** 293.7M Verified
+- **Contract Slots:** 1.23B Processed
+- **Current Throughput:** ~100k accounts/min
+
+### 🏁 Phase 4: Block Execution
+- **State Download:** COMPLETE (375M Accounts)
+- **Block Replay:** 1.1M blocks remaining
+- **Status:** Validating chain segments against healed state trie.
