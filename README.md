@@ -25,3 +25,24 @@ This repository documents a hardened, decoupled Ethereum stack:
 - **State Download:** COMPLETE (375M Accounts)
 - **Block Replay:** 1.1M blocks remaining
 - **Status:** Validating chain segments against healed state trie.
+
+### 🛰️ Project Evolution: Multi-Chain Expansion (BTC Sentinel)
+
+Following the successful deployment of the Ethereum stack, the infrastructure was expanded to include a dedicated Bitcoin Full Node utilizing a tiered storage model.
+New Implementation: The 1TB Blockchain Vault
+
+    Protocol: Bitcoin Core (Mainnet)
+
+    Storage Tiering: Offloaded block data to a 1TB External SSD (SDB1) via UAS5000 bridge to preserve NVMe IOPS for Ethereum's state trie.
+
+    Resource Management: Implemented a "Sprint Mode" configuration, allocating a 16GB dbcache to accelerate Initial Block Download (IBD).
+
+Infrastructure on a Stick (Project 2)
+
+The Bitcoin node has been modularized into a Dockerized Environment, allowing for total portability.
+
+    IaC: Managed via docker-compose.yml.
+
+    Volume Mapping: Seamless handoff between bare-metal sync and containerized operation.
+
+    Repository: ekeleu/sentinel-btc-vault
