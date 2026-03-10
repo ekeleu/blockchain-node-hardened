@@ -46,3 +46,4 @@ The Bitcoin node has been modularized into a Dockerized Environment, allowing fo
     Volume Mapping: Seamless handoff between bare-metal sync and containerized operation.
 
     Repository: ekeleu/sentinel-btc-vault
+> **Project Validation:** Successfully maintained 15+ active IPv4 P2P connections over a Three UK CGNAT gateway.
